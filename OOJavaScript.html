@@ -1,0 +1,116 @@
+
+<!doctype html>
+<html>
+<head>
+	<title>OOP</title>
+
+	<script>
+		function createPersonViaFunction(name) {
+			//alert(name);
+			let person = CreateNewPerson(name);
+			person.greeting();
+		}// End function createPersonViaFunction
+
+		function CreateNewPerson(name) {
+			let p = {}; // let p = new Object ();
+			p.name = name;
+			p.getName = function(){
+				return name;
+			}// End p.getName
+			p.greeting = function () {
+				alert("Hi! I'm " + name + ".");
+			}// End p.greeting
+			return p;
+		}// End function CreateNewPerson
+
+//*********************************************
+
+	function newPersonViaPrototype(n) {
+		let person = new Person1(n);
+		person.greeting();
+
+		let ethan = new Person1 ("Ethan");
+		ethan.greeting();
+	}// End function newPersonViaPrototype
+
+	function Person1(name) {
+		this.name = name;
+		this.greeting = function () {
+			alert("Hi! I'm " + name + ".");
+		}// End this.greeting
+	}// End function Person1
+
+	//*********************************************
+
+	function newPersonViaExtendedPrototype() {
+		let p = new Person2 ("Ethan", "Kenneth", 34, "Male", ["kittens", "sharks", "computers"]);
+		p.bio();
+	}// End function newPersonViaExtendedPrototype
+
+	function Person2(first, last, age, gender, interests) {
+		this.name = {
+			first,
+			last
+		};// End this.name
+
+		this.age = age;
+		this.gender = gender;
+		this.interests = interests;
+
+		this.bio = function () {
+
+			let interests = "";
+
+			for (var i = 0; i < this.interests.length; i++) {
+				interests += this.interests[i] + " ";
+			}// End for loop
+
+			let pronoun = (this.gender == "Male" || "male") ? "He" : "She";
+
+			alert(this.name.first + " " + this.name.last + " is " + this.age + " years old. " + pronoun +" likes " + interests + ".");
+		}// End this.bio
+	}// End function Person2
+
+
+
+	</script>
+
+
+</head>
+
+<body>
+
+
+	<label>name</input><br />
+	<input type="text" id="name"/>
+	<input type="button" value="CreateNewPerson via function" onclick="createPersonViaFunction(document.getElementById('name').value);"/>
+	<br />
+	<hr />
+
+	<label>name</input><br />
+	<input type="text" id="name1"/>
+	<input type="button" value="NewPerson via Prototype" onclick="newPersonViaPrototype(document.getElementById('name1').value);"/>
+	<br />
+	<hr />
+
+
+	<input type="button" value="NewPerson via extended Prototype" onclick="newPersonViaExtendedPrototype();"/>
+	<br />
+	<hr />
+
+	<input type="button" value="from scratch" onclick="newPersonFromScratch();"/>
+
+	<br />
+	<hr />
+
+	<input type="button" value="via variable" onclick="newPersonViaVariable();"/>
+
+	<br />
+	<hr />
+
+	<input type="button" value="dates" onclick="dates();"/>
+
+
+
+</body>
+</html>
